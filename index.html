@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      th {
+        background-color: white !important;
+        color: rgb(10, 10, 10) !important;
+      }
+      td {
+        color: rgb(10, 10, 10) !important;
+        background-color: white !important;
+      }
+      .container {
+        border-radius: 20px;
+        width: fit-content;
+      }
+      body {
+        background-image: url(bg.jpeg);
+        background-position: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .container {
+        color: rgb(10, 10, 10);
+        background-color: white;
+      }
+      .container input {
+        width: 22rem;
+      }
+      .container #submit {
+        width: 22rem !important;
+        color: white;
+      }
+      .container:hover {
+        box-shadow: 0px 0px 10px rgba(230, 230, 230, 0.2);
+      }
+
+      .container input {
+        background: white;
+        color: rgb(10, 10, 10);
+      }
+      .container input::placeholder {
+        color: rgb(10, 10, 10);
+      }
+      .delete-button {
+        background-color: rgba(255, 0, 0, 0.801);
+        color: white;
+        padding: 5px;
+        border-radius: 15px;
+      }
+      .edit-button {
+        background-color: rgba(25, 0, 255, 0.801);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+      }
+      .container input:focus {
+        background-color: whitesmoke;
+        color: rgb(10, 10, 10);
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .pagination button {
+        margin: 0 5px;
+        background: linear-gradient(90deg, #20d3fe, #9049ff);
+        border-radius: 10px;
+        padding: 5px;
+        border: 0;
+        color: white;
+      }
+
+      .accordion-item,
+      .accordion-header,
+      .accordion-button {
+        background-color: white;
+        color: rgb(10, 10, 10);
+        width: 20rem;
+      }
+
+      #submit {
+        background: linear-gradient(90deg, #20d3fe, #9049ff);
+        width: 22rem;
+      }
+      .tbb {
+        border-radius: 20px;
+        background-color: white !important;
+        height: 90vh;
+        overflow-y: auto;
+      }
+      #data-table {
+        /* Define table styles */
+        width: 100%; /* Full width of the container */
+        border-collapse: collapse; /* Merge table borders */
+      }
+      #data-table th,
+      #data-table td {
+        /* Define table cell styles */
+        padding: 8px;
+        /* border: 1px solid #ccc; */
+        /* Add more styles as needed */
+      }
+
+      #data-table thead {
+        /* Make the table header sticky */
+        position: sticky;
+        top: 0;
+        /* background-color: #f0f0f0; */
+      }
+
+      .headings {
+        background: linear-gradient(to right, #20d3fe, #9049ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .tth {
+        background: linear-gradient(to right, #20d3fe, #9049ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.2rem;
+      }
+      .view-button {
+        background-color: aqua;
+        color: white;
+        padding: 5px;
+        border-radius: 15px;
+      }
+      .page-numbers {
+        display: flex;
+        justify-content: center;
+      }
+
+      .page-number {
+        padding: 5px 10px;
+        margin: 0 5px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      .page-number:hover {
+        background-color: #ccc;
+      }
+      #searchInput {
+        border-radius: 12px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-4">
+          <div class="container h-100 p-5 mt-2">
+            <h2 class="text-center headings">Data Form</h2>
+            <form id="data-form " class="w-50">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input
+                  type="text"
+                  maxlength="15"
+                  class="form-control"
+                  id="name"
+                  pattern="[A-Za-z ]*"
+                  oninput="this.value = this.value.replace(/[^A-Za-z ]/g, '')"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Your Name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="age" class="form-label">Age:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  pattern="[0-9]*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  id="age"
+                  maxlength="3"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Your age"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="education" class="form-label">Education:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="education"
+                  maxlength="11"
+                  pattern="[A-Za-z ]*"
+                  oninput="this.value = this.value.replace(/[^A-Za-z ]/g, '')"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter your Education"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="designation" class="form-label">Designation:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="designation"
+                  maxlength="10"
+                  pattern="[A-Za-z ]*"
+                  oninput="this.value = this.value.replace(/[^A-Za-z ]/g, '')"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter your Designation"
+                />
+              </div>
+
+              <button
+                type="submit"
+                value="submit"
+                name="submit"
+                id="submit"
+                class="btn w-100 justify-content-center"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="container-fluid w-100 mt-3 p-3 tbb">
+            <div>
+              <select name="sort" id="sort">
+                <option value="">Sort</option>
+                <option value="atz">A - to - Z</option>
+                <option value="zta">Z - to - A</option>
+              </select>
+
+              <select name="entry" id="entry" class="mx-5">
+                <option value="">rows#</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+              </select>
+
+              <span style="cursor: pointer" class="mx-3" id="del"
+                ><img src="trash-2.svg" alt="" srcset=""
+              /></span>
+              <span style="cursor: pointer" class="mx-3" id="export"
+                ><img src="share (1).svg" alt="" srcset=""
+              /></span>
+              <input type="text" id="searchInput" class="float-end" placeholder="Search in Table" />
+            </div>
+            <table class="table bg-light" id="data-table">
+              <thead>
+                <tr>
+                  <th colspan="5" class="text-center tth">Users Data Table</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Education</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="pagination">
+              <button id="prevButton">Previous</button>
+              <span id="pageNumbers" class="pagination d-inline"></span>
+
+              <button id="nextButton">Next</button>
+            </div>
+            <div class="" id="count-rows"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item w-100">
+                <h2 class="accordion-header w-100">
+                  <button
+                    class="accordion-button collapsed w-100"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    Personal
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseOne"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body w-100" id="person"></div>
+                </div>
+              </div>
+              <div class="accordion-item w-100">
+                <h2 class="accordion-header w-100">
+                  <button
+                    class="accordion-button collapsed w-100"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseTwo"
+                  >
+                    Educational
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseTwo"
+                  class="accordion-collapse collapse w-100"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body w-100" id="educationn"></div>
+                </div>
+              </div>
+              <div class="accordion-item w-100">
+                <h2 class="accordion-header w-100">
+                  <button
+                    class="accordion-button collapsed w-100"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseThree"
+                  >
+                    Professional
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseThree"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body w-100" id="profession"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="check-square.svg" class="rounded me-2" alt="..." />
+          <strong class="me-auto text-success">Inserted Successfully</strong>
+          <small>now</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Your Data is Inserted Successfully</div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast1" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="x-circle.svg" class="rounded me-2" alt="..." />
+          <strong class="me-auto text-danger">All Fields Required</strong>
+          <small>now</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">You must fill every field</div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="check-square.svg" class="rounded me-2" alt="..." />
+          <strong class="me-auto text-success">Updated Successfully</strong>
+          <small>now</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Your Data is Updated Successfully</div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast3" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="check-square.svg" class="rounded me-2" alt="..." />
+          <strong class="me-auto text-success">Deleted Successfully</strong>
+          <small>now</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Your Data is Deleted Successfully</div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="liveToast4" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="check-square.svg" class="rounded me-2" alt="..." />
+          <strong class="me-auto text-success">File Download</strong>
+          <small>now</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Your File Downloaded Successfully</div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
